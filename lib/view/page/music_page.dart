@@ -1,7 +1,9 @@
 import 'package:bca_music_player/model/search_result.dart';
 import 'package:bca_music_player/view/widget/custom_search_bar.dart';
 import 'package:bca_music_player/view/widget/search_result_widget.dart';
+import 'package:bca_music_player/view_model/music_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MusicPage extends StatefulWidget {
   const MusicPage({super.key});
@@ -11,94 +13,29 @@ class MusicPage extends StatefulWidget {
 }
 
 class _MusicPageState extends State<MusicPage> {
-  List<SearchResult> _searchResult = [
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-    SearchResult(
-      trackName: "Ariana Grande - October 12, 2024",
-      artistName: "Saturday Night Live",
-      thumbnailUrl:
-          "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/01/e4/9f/01e49f1c-4ad2-128d-ad4b-4136c4e8c629/mzl.gygwujih.png/100x100bb.jpg",
-      collectionName: "SNL: 2024/25: Season Sketches",
-      songUrl:
-          "https://video-ssl.itunes.apple.com/itunes-assets/Video211/v4/02/f5/51/02f551aa-ab7f-beca-8a65-84a366e137ca/mzvf_17379185868185891251.640x480.h264lc.U.p.m4v",
-    ),
-  ];
-
   bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            CustomSearchBar(onSearch: (search) {}, isLoading: false),
-            SizedBox(height: 20),
-            SearchResultListView(searchResult: _searchResult, isLoading: false),
-          ],
+        child: Consumer<MusicViewModel>(
+          builder: (context, viewModel, _) {
+            return Column(
+              children: [
+                const SizedBox(height: 10),
+                CustomSearchBar(
+                  onSearch: (search) => viewModel.fetchMusicData(search),
+                  isLoading: viewModel.isLoading,
+                ),
+                const SizedBox(height: 20),
+                SearchResultListView(
+                  searchResult: viewModel.searchResults,
+                  isLoading: viewModel.isLoading,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -149,7 +86,23 @@ class _SearchResultListViewState extends State<SearchResultListView> {
               itemCount: widget.searchResult.length,
               itemBuilder: (context, index) {
                 final result = widget.searchResult[index];
-                return Center(child: SearchResultWidget(searchResult: result));
+                final viewModel = Provider.of<MusicViewModel>(context);
+
+                final isPlaying = viewModel.selectedMusic == result;
+
+                return Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      viewModel.selectMusic(result);
+
+                      
+                    },
+                    child: SearchResultWidget(
+                      searchResult: result,
+                      isPlaying: isPlaying,
+                    ),
+                  ),
+                );
               },
             ),
     );

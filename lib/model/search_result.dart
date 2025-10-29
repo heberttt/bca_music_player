@@ -15,11 +15,11 @@ class SearchResult {
 
   factory SearchResult.fromJson(Map<String, dynamic> json) {
     return SearchResult(
-      trackName: json["trackName"],
-      artistName: json["artistName"],
-      collectionName: json["collectionName"],
-      thumbnailUrl: json["artworkUrl100"],
-      songUrl: json["previewUrl"],
+      trackName: json["trackName"] ?? "",
+      artistName: json["artistName"] ?? "",
+      collectionName: json["collectionName"] ?? "",
+      thumbnailUrl: json["artworkUrl100"] ?? "",
+      songUrl: json["previewUrl"] ?? "",
     );
   }
 }

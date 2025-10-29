@@ -8,7 +8,7 @@ class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({
     super.key,
     required this.searchResult,
-    this.isPlaying = true,
+    this.isPlaying = false,
   });
 
   @override
