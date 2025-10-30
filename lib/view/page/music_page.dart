@@ -1,4 +1,5 @@
 import 'package:bca_music_player/model/search_result.dart';
+import 'package:bca_music_player/view/widget/bottom_music_bar.dart';
 import 'package:bca_music_player/view/widget/custom_search_bar.dart';
 import 'package:bca_music_player/view/widget/search_result_widget.dart';
 import 'package:bca_music_player/view_model/music_view_model.dart';
@@ -13,8 +14,6 @@ class MusicPage extends StatefulWidget {
 }
 
 class _MusicPageState extends State<MusicPage> {
-  bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +33,25 @@ class _MusicPageState extends State<MusicPage> {
                   isLoading: viewModel.isLoading,
                 ),
               ],
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Consumer<MusicViewModel>(
+          builder: (context, viewModel, _) {
+            final music = viewModel.selectedMusic;
+            if (music == null) return const SizedBox.shrink();
+
+            return BottomMusicBar(
+              isPlaying: viewModel.isPlaying,
+              progress: viewModel.currentProgress,
+              currentIndex: viewModel.currentIndex,
+              totalSongs: viewModel.searchResults.length,
+              onPlayPause: viewModel.togglePlayPause,
+              onNext: viewModel.playNext,
+              onPrevious: viewModel.playPrevious,
+              onSeek: viewModel.seekTo,
             );
           },
         ),
@@ -89,17 +107,17 @@ class _SearchResultListViewState extends State<SearchResultListView> {
                 final viewModel = Provider.of<MusicViewModel>(context);
 
                 final isPlaying = viewModel.selectedMusic == result;
+                final isLoading = viewModel.loadingMusic == result;
 
                 return Center(
                   child: GestureDetector(
                     onTap: () {
                       viewModel.selectMusic(result);
-
-                      
                     },
                     child: SearchResultWidget(
                       searchResult: result,
                       isPlaying: isPlaying,
+                      isLoading: isLoading,
                     ),
                   ),
                 );

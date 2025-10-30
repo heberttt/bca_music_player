@@ -4,23 +4,20 @@ import 'package:flutter/material.dart';
 class SearchResultWidget extends StatelessWidget {
   final SearchResult searchResult;
   final bool isPlaying;
+  final bool isLoading;
 
   const SearchResultWidget({
     super.key,
     required this.searchResult,
     this.isPlaying = false,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Colors.black,
-            width: 0.4,
-          ),
-        ),
+        border: Border(top: BorderSide(color: Colors.black, width: 0.4)),
       ),
       height: 100,
       child: Padding(
@@ -32,7 +29,10 @@ class SearchResultWidget extends StatelessWidget {
               height: 80,
               width: 80,
               color: Colors.white,
-              child: Image.network(searchResult.thumbnailUrl, fit: BoxFit.cover),
+              child: Image.network(
+                searchResult.thumbnailUrl,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(width: 15),
 
@@ -80,12 +80,14 @@ class SearchResultWidget extends StatelessWidget {
 
             const SizedBox(width: 35),
 
-            if (isPlaying)
-              const Icon(
-                Icons.graphic_eq,
-                color: Colors.green,
-                size: 22,
-              ),
+            if (isLoading)
+              const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            else if (isPlaying)
+              const Icon(Icons.graphic_eq, color: Colors.green, size: 22),
           ],
         ),
       ),
